@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Instagram, ArrowUpRight, MapPin, Mail, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import ConsultationModal from './ConsultationModal';
 
 export default function Footer() {
@@ -16,9 +17,15 @@ export default function Footer() {
           {/* Top Section: CTA & Brand */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-white/10 pb-12 mb-12">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black text-xl text-white">
-                  F
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="relative w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+                  <Image
+                    src="/logo.png"
+                    alt="FYNUX Logo"
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(59,130,246,0.4)]"
+                  />
                 </div>
                 <span className="text-2xl font-black tracking-tight text-white">
                   FYNUX<span className="text-blue-500">.</span>

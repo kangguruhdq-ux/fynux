@@ -108,7 +108,7 @@ export default function ConsultationModal({
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-hidden"
         >
           {/* Backdrop */}
           <motion.div
@@ -116,7 +116,7 @@ export default function ConsultationModal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm"
+            className="fixed inset-0 bg-[#070b12]/80 backdrop-blur-md"
           />
 
           {/* Modal Container */}
@@ -126,19 +126,19 @@ export default function ConsultationModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden z-10 my-8"
+            className="relative w-full max-w-xl max-h-[92dvh] sm:max-h-[88vh] bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 overflow-hidden z-10 flex flex-col"
           >
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100 bg-slate-50/80">
+            {/* Header - Fixed & Always Visible */}
+            <div className="flex items-center justify-between px-5 sm:px-6 py-4 sm:py-5 border-b border-slate-100 bg-slate-50/95 shrink-0">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-blue-600/10 flex items-center justify-center text-blue-600">
-                  <MessageSquare className="w-5 h-5" />
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-600/10 flex items-center justify-center text-blue-600 shrink-0">
+                  <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h3 id="modal-title" className="text-lg font-bold text-slate-900 leading-none">
+                  <h3 id="modal-title" className="text-base sm:text-lg font-bold text-slate-900 leading-none">
                     Konsultasi & Estimasi Proyek
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-1">
                     Bahas spesifikasi teknis dan dapatkan estimasi akurat
                   </p>
                 </div>
@@ -148,14 +148,14 @@ export default function ConsultationModal({
                 type="button"
                 onClick={onClose}
                 aria-label="Tutup form konsultasi"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Content Body */}
-            <div className="p-6">
+            {/* Content Body - Scrollable on mobile & desktop */}
+            <div className="p-5 sm:p-6 overflow-y-auto overscroll-contain flex-1">
               {status === 'success' ? (
                 <div className="py-6 text-center space-y-4">
                   <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto">

@@ -17,6 +17,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ConsultationModal from './ConsultationModal';
 
@@ -119,8 +120,15 @@ export default function Navbar() {
             className="flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-1 group"
             aria-label="FYNUX Homepage"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-black text-sm shadow-md shadow-blue-600/30 group-hover:scale-105 transition-transform">
-              F
+            <div className="relative w-8 h-8 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="FYNUX Logo"
+                width={32}
+                height={32}
+                priority
+                className="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(59,130,246,0.4)]"
+              />
             </div>
             <div className="flex flex-col text-left">
               <span className="text-lg font-black tracking-tight text-white flex items-center leading-none">
