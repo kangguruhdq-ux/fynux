@@ -70,20 +70,6 @@ export default function Hero() {
           animate="visible"
           className="container max-w-5xl mx-auto px-6 relative z-10 text-center flex flex-col items-center"
         >
-          {/* Engineering Badge */}
-          <motion.div
-            variants={heroItem}
-            className="mb-6 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0b0f19]/90 border border-white/20 shadow-2xl backdrop-blur-md"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="text-[11px] font-bold text-slate-200 tracking-widest uppercase font-mono">
-              Rekayasa Perangkat Lunak & Sistem Skalabel
-            </span>
-          </motion.div>
-
           {/* Headline */}
           <motion.h1
             variants={heroItem}
