@@ -198,7 +198,7 @@ function FeatureGroup({
 }
 
 export default function Pricing() {
-  const WHATSAPP_URL = 'https://wa.me/6281234567890'; // ✅ ganti nomor WA kamu di sini
+  const WHATSAPP_URL = 'https://wa.me/6281234567890'; // Kontak WhatsApp resmi
   const [openCompare, setOpenCompare] = useState(false);
   const [consultModalOpen, setConsultModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('Paket Starter (Rp 1.49jt)');
@@ -208,7 +208,7 @@ export default function Pricing() {
     () => [
       {
         key: 'starter',
-        label: '💎 RECOMMENDATION',
+        label: 'REKOMENDASI UMKM',
         name: 'Starter',
         tagline: 'Cocok untuk bisnis baru, personal brand, atau campaign event.',
         badgeIcon: Zap,
@@ -220,7 +220,7 @@ export default function Pricing() {
         websiteTypes: ['Landing Page (1 halaman)', 'Web Portfolio / Profile (Max 5 halaman)'],
         hosting: ['20GB SSD NVMe + Gratis Domain', 'Free SSL + Daily Backup', '99.9% Uptime Guarantee'],
         dev: ['Mobile-Responsive', 'Contact Form', 'Basic SEO Setup', '1x Major Revision'],
-        delivery: '⚡ Estimasi: 5–7 Hari Kerja',
+        delivery: 'Estimasi: 5-7 Hari Kerja',
 
         ctaText: 'Pilih Paket Starter',
         ctaHref: WHATSAPP_URL,
@@ -250,7 +250,7 @@ export default function Pricing() {
           'Free Maintenance 3 Bulan',
           '2x Major Revisions',
         ],
-        delivery: '⚡ Estimasi: 10–14 Hari Kerja',
+        delivery: 'Estimasi: 10-14 Hari Kerja',
 
         ctaText: 'Pilih Paket Business',
         ctaHref: WHATSAPP_URL,
@@ -268,7 +268,7 @@ export default function Pricing() {
         websiteTypes: ['Dashboard & Sistem Manajemen (Presensi/ERP)', 'Custom SaaS & Database Complex', 'API & AI Integration'],
         hosting: ['Dedicated/Cloud Setup', 'Monitoring + Backup Strategy', 'Security hardening (basic)'],
         dev: ['Arsitektur sistem + dokumentasi', 'Integrasi API/AI', 'Dedicated support (by agreement)'],
-        delivery: '⏳ Estimasi: 2–6 Minggu (tergantung scope)',
+        delivery: 'Estimasi: 2-6 Minggu (tergantung scope)',
 
         ctaText: 'Book Meeting (Diskusi Scope)',
         ctaHref: WHATSAPP_URL,
@@ -362,15 +362,15 @@ export default function Pricing() {
       { label: 'Pilihan Website', starter: 'Landing / Portfolio', pro: 'Landing Premium / Blog / E-commerce' },
       { label: 'Custom Design', starter: 'Basic', pro: 'Premium' },
       { label: 'Jumlah Halaman (Max)', starter: '5', pro: '10' },
-      { label: 'E-commerce', starter: '❌', pro: '✅ (up to 50 products)' },
-      { label: 'Blog/CMS', starter: '❌', pro: '✅' },
-      { label: 'Advanced SEO', starter: '❌', pro: '✅' },
+      { label: 'E-commerce', starter: 'Tidak Termasuk', pro: 'Tersedia (hingga 50 produk)' },
+      { label: 'Blog/CMS', starter: 'Tidak Termasuk', pro: 'Tersedia' },
+      { label: 'Advanced SEO', starter: 'Tidak Termasuk', pro: 'Tersedia' },
       { label: 'Storage', starter: '20GB', pro: '50GB' },
       { label: 'Backup', starter: 'Daily', pro: 'Hourly' },
       { label: 'Support', starter: 'Email (< 24 jam)', pro: 'Priority WhatsApp' },
-      { label: 'Free Maintenance', starter: '❌', pro: '3 Bulan' },
+      { label: 'Free Maintenance', starter: 'Tidak Termasuk', pro: '3 Bulan' },
       { label: 'Major Revisions', starter: '1x', pro: '2x' },
-      { label: 'Delivery', starter: '5–7 hari', pro: '10–14 hari' },
+      { label: 'Delivery', starter: '5-7 hari', pro: '10-14 hari' },
       { label: 'Renewal (Year 2+)', starter: '400K/tahun', pro: '800K/tahun' },
     ],
     []
@@ -473,7 +473,7 @@ export default function Pricing() {
                   {/* Label */}
                   {isFeatured ? (
                     <div className="mb-4 inline-flex self-start rounded-full bg-blue-600/90 px-2.5 py-0.5 text-[10px] font-bold tracking-wider text-white shadow-lg backdrop-blur-sm border border-blue-500/50">
-                      ⭐ MOST POPULAR
+                      PILIHAN POPULER
                     </div>
                   ) : plan.label ? (
                     <p className="mb-2 text-[10px] font-bold tracking-[0.15em] uppercase text-blue-600">
@@ -593,7 +593,7 @@ export default function Pricing() {
         >
           <SectionHead
             eyebrow="Jenis Website"
-            title="🤔 Jenis Website Apa yang Bisa Dibuat?"
+            title="Jenis Website Apa yang Dapat Dibuat?"
             subtitle={
               <>
                 Semua paket include <span className="font-semibold text-slate-900">HOSTING + DEVELOPMENT</span>. Anda bebas
@@ -660,9 +660,9 @@ export default function Pricing() {
           className="mx-auto mt-20 max-w-7xl"
         >
           <SectionHead
-            eyebrow="Value"
-            title="✨ Kenapa Pilih FYNUX?"
-            subtitle="Fokus kami: kualitas, kecepatan delivery, dan komunikasi yang jelas."
+            eyebrow="Nilai Rekayasa"
+            title="Kenapa Bermitra dengan FYNUX?"
+            subtitle="Fokus kami: kualitas kode teruji, ketepatan waktu peluncuran, dan transparansi komunikasi."
           />
 
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -703,7 +703,7 @@ export default function Pricing() {
                   Komparasi Detail
                 </p>
                 <p className="text-base font-bold text-slate-900">
-                  🤔 Belum yakin? Lihat Perbandingan
+                  Butuh Perbandingan Rinci? Buka Tabel Komparasi
                 </p>
               </div>
               <motion.div

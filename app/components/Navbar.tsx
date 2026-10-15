@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, MessageSquare } from 'lucide-react';
+import { Menu, X, MessageSquare, ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ConsultationModal from './ConsultationModal';
@@ -37,6 +37,7 @@ export default function Navbar() {
     { name: 'Katalog Layanan', href: '/servicefynux' },
     { name: 'Portofolio', href: '/portfolio' },
     { name: 'Tentang Kami', href: '/profile' },
+    { name: 'Aplikasi Web', href: '/webapp' },
     { name: 'Paket Harga', href: '/#pricing' },
   ];
 
@@ -45,24 +46,28 @@ export default function Navbar() {
       <header
         className={`fixed top-0 w-full z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 py-3'
-            : 'bg-white/80 backdrop-blur-sm py-4 border-b border-slate-100'
+            ? 'bg-[#070b12]/95 backdrop-blur-md shadow-lg border-b border-white/10 py-3'
+            : 'bg-[#070b12]/85 backdrop-blur-sm py-4 border-b border-white/5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with High-Tech Status Pill */}
           <Link
             href="/"
-            className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg p-1"
+            className="flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-1 group"
             aria-label="FYNUX Homepage"
           >
-            <span className="text-2xl font-black tracking-tight text-slate-900">
-              FYNUX<span className="text-blue-600">.</span>
+            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-black text-sm shadow-md shadow-blue-600/30 group-hover:scale-105 transition-transform">
+              F
+            </div>
+            <span className="text-xl font-black tracking-tight text-white flex items-center">
+              FYNUX
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 ml-1 animate-pulse" />
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Navigasi Utama">
+          <nav className="hidden lg:flex items-center gap-1 bg-white/[0.04] p-1.5 rounded-full border border-white/10 backdrop-blur-sm" aria-label="Navigasi Utama">
             {navLinks.map((link) => {
               const isActive =
                 link.href === '/'
@@ -73,8 +78,10 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-sm font-semibold transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-md py-1 px-2 ${
-                    isActive ? 'text-blue-600' : 'text-slate-600'
+                  className={`text-xs font-semibold px-4 py-2 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+                    isActive
+                      ? 'bg-blue-600 text-white font-bold shadow-sm shadow-blue-600/20'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {link.name}
@@ -84,26 +91,27 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA Trigger */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden lg:flex items-center gap-3">
             <button
               type="button"
               onClick={() => setIsConsultationOpen(true)}
-              className="min-h-[44px] px-5 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-xl hover:bg-blue-600 transition-all shadow-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="btn-shimmer min-h-[42px] px-5 py-2.5 bg-blue-600 text-white text-xs font-bold rounded-xl hover:bg-blue-500 transition-all shadow-md shadow-blue-600/25 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
             >
-              <MessageSquare className="w-4 h-4 text-blue-400" />
+              <MessageSquare className="w-3.5 h-3.5 text-blue-200" />
               <span>Konsultasi Proyek</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {/* Mobile Menu Toggle Button */}
           <button
             type="button"
-            className="md:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            className="lg:hidden p-2.5 rounded-xl text-slate-200 hover:bg-white/10 min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
             aria-label={isMobileMenuOpen ? 'Tutup navigasi' : 'Buka navigasi'}
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
           </button>
         </div>
       </header>
@@ -112,39 +120,61 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-30 bg-white pt-24 px-6 md:hidden flex flex-col justify-between pb-8 overflow-y-auto"
+            className="fixed inset-0 z-30 bg-[#070b12] pt-24 px-6 lg:hidden flex flex-col justify-between pb-8 overflow-y-auto border-b border-white/10"
           >
-            <nav className="flex flex-col gap-2" aria-label="Navigasi Mobile">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="min-h-[48px] flex items-center text-xl font-bold text-slate-800 hover:text-blue-600 px-3 py-2 rounded-xl hover:bg-slate-50 transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
+            <div>
+              <div className="mb-4 pb-2 border-b border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+                <span>SYSTEM NAVIGATION</span>
+                <span className="flex items-center gap-1 text-emerald-400">
+                  <ShieldCheck className="w-3.5 h-3.5" /> SECURE
+                </span>
+              </div>
 
-            <div className="pt-6 border-t border-slate-100 space-y-3">
+              <nav className="flex flex-col gap-1.5" aria-label="Navigasi Mobile">
+                {navLinks.map((link) => {
+                  const isActive =
+                    link.href === '/'
+                      ? pathname === '/'
+                      : pathname.startsWith(link.href);
+
+                  return (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`min-h-[48px] flex items-center justify-between text-base font-bold px-4 py-3 rounded-xl transition-colors ${
+                        isActive
+                          ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30'
+                          : 'text-slate-200 hover:text-white hover:bg-white/5'
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ArrowRight className="w-4 h-4 opacity-50" />
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
+
+            <div className="pt-6 border-t border-white/10 space-y-3">
               <button
                 type="button"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsConsultationOpen(true);
                 }}
-                className="w-full min-h-[50px] py-3.5 bg-blue-600 text-white text-base font-bold rounded-xl shadow-md flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors"
+                className="w-full min-h-[50px] py-3.5 bg-blue-600 text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 hover:bg-blue-500 transition-colors"
               >
-                <MessageSquare className="w-5 h-5" />
+                <MessageSquare className="w-4 h-4" />
                 Mulai Konsultasi Teknis
               </button>
-              <p className="text-xs text-slate-400 text-center">
-                Solusi Web App, Profil Perusahaan, dan Cloud Hosting
+              <p className="text-[11px] text-slate-400 text-center flex items-center justify-center gap-1.5 font-mono">
+                <Terminal className="w-3.5 h-3.5 text-blue-400" />
+                Next.js 16 • React 19 • Full-Stack Engineering
               </p>
             </div>
           </motion.div>
