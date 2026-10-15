@@ -18,7 +18,13 @@ export default function SocialProof() {
 
   return (
     <section className="py-10 border-b border-white/10 bg-[#070b12] text-white overflow-hidden" aria-label="Teknologi dan Standar Rekayasa">
-      <div className="container max-w-7xl mx-auto px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="container max-w-7xl mx-auto px-6"
+      >
         <p className="text-center text-xs font-mono font-bold text-slate-400 mb-6 uppercase tracking-widest">
           Ekosistem Teknologi & Standar Rekayasa Sistem FYNUX
         </p>
@@ -43,7 +49,7 @@ export default function SocialProof() {
             ))}
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

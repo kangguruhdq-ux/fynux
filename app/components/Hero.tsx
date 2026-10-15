@@ -1,10 +1,34 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, Variants } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Code2, Layers, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ConsultationModal from './ConsultationModal';
+
+const heroStagger: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.06,
+    },
+  },
+};
+
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
 
 export default function Hero() {
   const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
@@ -15,7 +39,12 @@ export default function Hero() {
         {/* ========================================================
             HERO BACKGROUND: Full-Bleed Real Client Showcase Visual
             ======================================================== */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 1.03 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none"
+        >
           <Image
             src="/portofolioclient1.png"
             alt="FYNUX Hero Background Visual Showcase"
@@ -32,12 +61,20 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#070b12]/75 via-transparent to-[#070b12]/75 pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(7,11,18,0.4)_0%,rgba(7,11,18,0.85)_100%)] pointer-events-none" />
           <div className="absolute inset-0 bg-cyber-grid-active pointer-events-none opacity-60" />
-        </div>
+        </motion.div>
 
         {/* Foreground Content: High-Impact Centered Hero */}
-        <div className="container max-w-5xl mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+        <motion.div
+          variants={heroStagger}
+          initial="hidden"
+          animate="visible"
+          className="container max-w-5xl mx-auto px-6 relative z-10 text-center flex flex-col items-center"
+        >
           {/* Engineering Badge */}
-          <div className="mb-6 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0b0f19]/90 border border-white/20 shadow-2xl backdrop-blur-md">
+          <motion.div
+            variants={heroItem}
+            className="mb-6 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0b0f19]/90 border border-white/20 shadow-2xl backdrop-blur-md"
+          >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -45,23 +82,32 @@ export default function Hero() {
             <span className="text-[11px] font-bold text-slate-200 tracking-widest uppercase font-mono">
               Rekayasa Perangkat Lunak & Sistem Skalabel
             </span>
-          </div>
+          </motion.div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-normal text-white leading-[1.15] mb-6 max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+          <motion.h1
+            variants={heroItem}
+            className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-normal text-white leading-[1.15] mb-6 max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]"
+          >
             Arsitektur Web Modern, <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">
               Presisi dan Skalabel.
             </span>
-          </h1>
+          </motion.h1>
 
           {/* Sub-headline */}
-          <p className="text-base sm:text-lg md:text-xl text-slate-200 mb-10 max-w-2xl leading-relaxed tracking-normal font-normal drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
+          <motion.p
+            variants={heroItem}
+            className="text-base sm:text-lg md:text-xl text-slate-200 mb-10 max-w-2xl leading-relaxed tracking-normal font-normal drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+          >
             FYNUX membangun aplikasi web kustom, sistem informasi korporat, dan platform digital yang cepat, aman, dan siap mendukung pertumbuhan operasional bisnis Anda.
-          </p>
+          </motion.p>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-12 justify-center">
+          <motion.div
+            variants={heroItem}
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-12 justify-center"
+          >
             <button
               type="button"
               onClick={() => setIsConsultModalOpen(true)}
@@ -77,10 +123,13 @@ export default function Hero() {
             >
               Lihat Paket Layanan
             </Link>
-          </div>
+          </motion.div>
 
           {/* Live Background Proof Pill */}
-          <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#090d16]/90 border border-white/15 backdrop-blur-md text-xs text-slate-300 shadow-lg">
+          <motion.div
+            variants={heroItem}
+            className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#090d16]/90 border border-white/15 backdrop-blur-md text-xs text-slate-300 shadow-lg"
+          >
             <span className="text-slate-400">Background Showcase:</span>
             <a
               href="https://www.moonshotacademy.trade"
@@ -95,10 +144,13 @@ export default function Hero() {
             <span className="text-emerald-400 font-mono text-[11px] hidden sm:inline">
               Live Production Build
             </span>
-          </div>
+          </motion.div>
 
           {/* Operational Commitments */}
-          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-slate-300 font-medium pt-4 border-t border-white/10 w-full max-w-xl">
+          <motion.div
+            variants={heroItem}
+            className="flex flex-wrap items-center justify-center gap-5 text-xs text-slate-300 font-medium pt-4 border-t border-white/10 w-full max-w-xl"
+          >
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Transparansi Biaya Penuh</span>
@@ -113,8 +165,8 @@ export default function Hero() {
               <Layers className="w-4 h-4 text-sky-400 shrink-0" />
               <span>Sistem Nyata Siap Produksi</span>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       <ConsultationModal

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import ConsultationModal from '@/app/components/ConsultationModal';
@@ -18,7 +19,12 @@ export default function WebDesignPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[280px] bg-indigo-600/15 blur-[110px] pointer-events-none rounded-full" />
         <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-blue-500 via-indigo-400 to-sky-400 opacity-80" />
         <div className="pointer-events-none absolute inset-0 bg-cyber-grid-dark opacity-40" />
-        <div className="relative max-w-7xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative max-w-7xl mx-auto text-center"
+        >
           <span className="text-blue-400 font-bold tracking-widest uppercase text-xs sm:text-sm font-mono">
             UI/UX Design Strategy
           </span>
@@ -30,7 +36,7 @@ export default function WebDesignPage() {
             Kami menggabungkan hierarki visual yang jelas dengan psikologi pengguna. 
             Hasilnya adalah pengalaman digital yang meyakinkan pengunjung untuk mengambil tindakan.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-20 px-6 bg-white border-b border-slate-200">

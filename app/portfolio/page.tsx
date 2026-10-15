@@ -98,7 +98,12 @@ export default function Portfolio() {
         <div className="absolute inset-0 bg-cyber-grid-active pointer-events-none opacity-30" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[250px] bg-blue-600/10 blur-[120px] pointer-events-none rounded-full" />
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-4xl mx-auto text-center relative z-10"
+        >
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-blue-400 mb-6 hover-uplift">
             Portofolio & Studi Kasus
           </span>
@@ -112,7 +117,7 @@ export default function Portfolio() {
           <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed tracking-normal">
             Bukan sekadar mockup visual. Kami membangun sistem fungsional yang memangkas beban kerja manual dan memperkuat akurasi operasional.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* 2) CASE STUDIES */}

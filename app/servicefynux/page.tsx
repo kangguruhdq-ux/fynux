@@ -309,7 +309,11 @@ export default function ServiceCatalog() {
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] pointer-events-none rounded-full" />
 
         <div className="relative mx-auto max-w-6xl px-6 pt-32 pb-20 md:pt-36 md:pb-24 text-center">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase text-blue-400 shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-60" />
@@ -351,7 +355,7 @@ export default function ServiceCatalog() {
               <MiniValue dark icon={ShieldCheck} title="Keamanan Teruji" desc="Standar proteksi data terenkripsi dan bebas celah keamanan umum." />
               <MiniValue dark icon={Target} title="Fokus Hasil Bisnis" desc="Setiap struktur halaman dioptimasi untuk menghasilkan respon calon klien." />
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

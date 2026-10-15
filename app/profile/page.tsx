@@ -149,7 +149,11 @@ export default function CompanyProfile() {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-6 pt-32 pb-20 md:pt-36 md:pb-28">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
             <SectionTitle
               dark
               eyebrow="The Minds Behind FYNUX"
@@ -194,7 +198,7 @@ export default function CompanyProfile() {
               <Stat dark label="Model Kolaborasi" value="3 Core Engineers Langsung" />
               <Stat dark label="Lingkup Hasil" value="Desain + Kode + Arsitektur" />
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

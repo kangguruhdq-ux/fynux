@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import ConsultationModal from '@/app/components/ConsultationModal';
@@ -54,7 +55,12 @@ export default function HostingPage() {
         <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-80" />
         <div className="pointer-events-none absolute inset-0 bg-cyber-grid-active opacity-30" />
 
-        <div className="relative max-w-7xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative max-w-7xl mx-auto text-center"
+        >
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0b0f19]/90 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase mb-5 shadow-lg">
             <span className="w-2 h-2 rounded-full animate-server-led" />
             <span>Server Uptime: 99.98% Monitored 24/7</span>
@@ -67,7 +73,7 @@ export default function HostingPage() {
           <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed tracking-normal font-normal">
             Infrastruktur server NVMe berkinerja tinggi yang dikelola penuh oleh teknisi berpengalaman. Bebas kendala server down dan kebocoran keamanan.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-20 px-6 bg-[#0b0f19] text-white rounded-3xl mx-4 md:mx-10 shadow-2xl border border-white/10">

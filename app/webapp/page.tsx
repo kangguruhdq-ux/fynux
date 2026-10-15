@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import ConsultationModal from '@/app/components/ConsultationModal';
@@ -28,7 +29,12 @@ export default function WebAppPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[260px] bg-blue-600/10 blur-[100px] pointer-events-none rounded-full" />
         <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80" style={{ animation: 'dataPacketTransit 3.5s linear infinite' }} />
         <div className="pointer-events-none absolute inset-0 bg-cyber-grid-active opacity-35" />
-        <div className="relative max-w-7xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative max-w-7xl mx-auto text-center"
+        >
           <span className="text-blue-400 font-bold tracking-widest uppercase text-xs sm:text-sm font-mono">
             Web Application Engineering
           </span>
@@ -39,7 +45,7 @@ export default function WebAppPage() {
           <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed tracking-normal font-normal">
             Kami membangun sistem berbasis web (SaaS, CRM internal, modul ERP, presensi) yang mengotomatisasi proses bisnis Anda dengan keandalan tinggi.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Content Detail */}

@@ -101,7 +101,10 @@ export default function Navbar() {
       {/* ========================================================
           UNIFIED ROOT HEADER (Fixed at z-50, zero layout shift)
           ======================================================== */}
-      <header
+      <motion.header
+        initial={{ opacity: 0, y: -14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 inset-x-0 h-16 z-50 transition-[background-color,border-color,box-shadow] duration-200 ${
           isScrolled || isMobileMenuOpen
             ? 'bg-[#070b12] shadow-xl border-b border-white/10'
@@ -182,7 +185,7 @@ export default function Navbar() {
             )}
           </button>
         </div>
-      </header>
+      </motion.header>
 
       {/* ========================================================
           BUTTERY SMOOTH MOBILE DRAWER (60fps Spring Curve)
