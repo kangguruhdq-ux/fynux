@@ -19,20 +19,21 @@ export default function WebAppPage() {
   ];
 
   return (
-    <main className="bg-white min-h-screen">
+    <main className="bg-[#070b12] min-h-screen">
       <Navbar />
 
       {/* Hero Service */}
-      <section className="pt-36 pb-20 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <span className="text-blue-600 font-bold tracking-widest uppercase text-xs sm:text-sm">
+      <section className="relative pt-36 pb-20 px-6 bg-[#070b12] text-white border-b border-white/10 overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="relative max-w-7xl mx-auto text-center">
+          <span className="text-blue-400 font-bold tracking-widest uppercase text-xs sm:text-sm font-mono">
             Web Application Engineering
           </span>
-          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-slate-900 leading-tight">
+          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight">
             Lebih Dari Sekadar Website.<br />
-            Ini Adalah <span className="text-blue-600">Sistem Operasional.</span>
+            Ini Adalah <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">Sistem Operasional.</span>
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
             Kami membangun sistem berbasis web (SaaS, CRM internal, modul ERP, presensi) yang mengotomatisasi proses bisnis Anda dengan keandalan tinggi.
           </p>
         </div>
@@ -85,12 +86,12 @@ export default function WebAppPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 text-center">
+      <section className="py-20 px-6 text-center bg-white border-t border-slate-200">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 tracking-normal">
             Siap Mengotomatisasi Alur Kerja Anda?
           </h2>
-          <p className="text-slate-600 mb-8 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 mb-8 max-w-xl mx-auto text-sm sm:text-base leading-relaxed tracking-normal">
             Diskusikan spesifikasi kebutuhan aplikasi dan timeline proyek bersama tim engineer kami.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

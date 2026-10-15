@@ -202,16 +202,28 @@ function Pill({ children }: { children: React.ReactNode }) {
   );
 }
 
-function MiniValue({ icon: Icon, title, desc }: { icon: typeof Zap; title: string; desc: string }) {
+function MiniValue({ icon: Icon, title, desc, dark }: { icon: typeof Zap; title: string; desc: string; dark?: boolean }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm text-left">
+    <div
+      className={`rounded-2xl border p-5 shadow-sm text-left ${
+        dark
+          ? 'border-white/10 bg-[#0d131f] text-white'
+          : 'border-slate-200 bg-white text-slate-900'
+      }`}
+    >
       <div className="flex items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 border border-slate-200 text-slate-900">
+        <div
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${
+            dark
+              ? 'bg-white/5 border-white/10 text-blue-400'
+              : 'bg-slate-50 border-slate-200 text-slate-900'
+          }`}
+        >
           <Icon className="h-5 w-5" />
         </div>
         <div>
-          <p className="text-sm font-bold text-slate-900">{title}</p>
-          <p className="mt-1 text-xs text-slate-600 leading-relaxed">{desc}</p>
+          <p className={`text-sm font-bold ${dark ? 'text-white' : 'text-slate-900'}`}>{title}</p>
+          <p className={`mt-1 text-xs leading-relaxed ${dark ? 'text-slate-300' : 'text-slate-600'}`}>{desc}</p>
         </div>
       </div>
     </div>
@@ -286,57 +298,58 @@ export default function ServiceCatalog() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col bg-white pt-20 overflow-x-hidden">
+    <main className="flex min-h-screen flex-col bg-[#070b12] overflow-x-hidden">
       <Navbar />
 
-      {/* HERO */}
-      <section className="relative overflow-hidden border-b border-slate-200 bg-white">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-35" />
+      {/* HERO: Deep Obsidian Elegant Dark Header */}
+      <section className="relative overflow-hidden border-b border-white/10 bg-[#070b12] text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] pointer-events-none rounded-full" />
 
-        <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-24 text-center">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }}>
-            <motion.div variants={fade} className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase text-slate-700 shadow-sm">
+        <div className="relative mx-auto max-w-6xl px-6 pt-32 pb-20 md:pt-36 md:pb-24 text-center">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase text-blue-400 shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
               Katalog Solusi Rekayasa FYNUX
-            </motion.div>
+            </div>
 
-            <motion.h1 variants={fade} className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-tight">
+            <h1 className="mt-6 text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-normal leading-tight">
               Pilih Solusi Berdasarkan Hasil Nyata,<br className="hidden md:block" />
-              <span className="text-blue-600"> Bukan Sekadar Halaman Statis.</span>
-            </motion.h1>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300"> Bukan Sekadar Halaman Statis.</span>
+            </h1>
 
-            <motion.p variants={fade} className="mt-5 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Fokus pada dampak langsung: <span className="font-semibold text-slate-900">kredibilitas bisnis</span>,{' '}
-              <span className="font-semibold text-slate-900">konversi pelanggan</span>, atau{' '}
-              <span className="font-semibold text-slate-900">otomasi operasional</span>. Hindari pengeluaran pada fitur yang tidak dibutuhkan.
-            </motion.p>
+            <p className="mt-5 text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed tracking-normal font-normal">
+              Fokus pada dampak langsung: <span className="font-semibold text-white">kredibilitas bisnis</span>,{' '}
+              <span className="font-semibold text-white">konversi pelanggan</span>, atau{' '}
+              <span className="font-semibold text-white">otomasi operasional</span>. Hindari pengeluaran pada fitur yang tidak dibutuhkan.
+            </p>
 
-            <motion.div variants={fade} className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 type="button"
                 onClick={() => handleOpenConsultation('Konsultasi Katalog Layanan')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] rounded-2xl bg-slate-900 px-7 py-3.5 text-sm font-bold text-white shadow-sm hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] rounded-2xl bg-blue-600 px-7 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-600/30 hover:bg-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 <MessageSquare className="h-4 w-4" /> Konsultasi Kebutuhan Gratis
               </button>
 
               <a
                 href="#quiz"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-sm font-bold text-slate-800 hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm px-7 py-3.5 text-sm font-bold text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Rekomendasi Paket Cepat <ArrowRight className="h-4 w-4" />
               </a>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fade} className="mt-12 grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto">
-              <MiniValue icon={Zap} title="Peluncuran Tepat Waktu" desc="Sistem siap digunakan sesuai jadwal tanpa kendala berkepanjangan." />
-              <MiniValue icon={ShieldCheck} title="Keamanan Teruji" desc="Standar proteksi data terenkripsi dan bebas celah keamanan umum." />
-              <MiniValue icon={Target} title="Fokus Hasil Bisnis" desc="Setiap struktur halaman dioptimasi untuk menghasilkan respon calon klien." />
-            </motion.div>
-          </motion.div>
+            <div className="mt-12 grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto">
+              <MiniValue dark icon={Zap} title="Peluncuran Tepat Waktu" desc="Sistem siap digunakan sesuai jadwal tanpa kendala berkepanjangan." />
+              <MiniValue dark icon={ShieldCheck} title="Keamanan Teruji" desc="Standar proteksi data terenkripsi dan bebas celah keamanan umum." />
+              <MiniValue dark icon={Target} title="Fokus Hasil Bisnis" desc="Setiap struktur halaman dioptimasi untuk menghasilkan respon calon klien." />
+            </div>
+          </div>
         </div>
       </section>
 

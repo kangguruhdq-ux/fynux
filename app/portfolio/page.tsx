@@ -90,34 +90,25 @@ export default function Portfolio() {
   ];
 
   return (
-    <main className="flex min-h-screen flex-col bg-white pt-20 overflow-x-hidden">
+    <main className="flex min-h-screen flex-col bg-[#070b12] overflow-x-hidden">
       <Navbar />
 
       {/* 1) HERO */}
-      <section className="relative py-24 px-6 bg-slate-900 text-white border-b border-slate-800">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-25 pointer-events-none" />
+      <section className="relative pt-32 pb-20 px-6 bg-[#070b12] text-white border-b border-white/10">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-blue-400 mb-6">
             Portofolio & Studi Kasus
           </span>
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight leading-tight"
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-normal leading-tight">
             Karya Rekayasa Nyata, <br />
             <span className="text-blue-400">Dampak Nyata bagi Klien.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08 }}
-            className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
-          >
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed tracking-normal">
             Bukan sekadar mockup visual. Kami membangun sistem fungsional yang memangkas beban kerja manual dan memperkuat akurasi operasional.
-          </motion.p>
+          </p>
         </div>
       </section>
 

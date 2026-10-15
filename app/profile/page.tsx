@@ -76,24 +76,22 @@ function SectionTitle({
         <Chip dark={dark}>{eyebrow}</Chip>
       </motion.div>
 
-      <motion.h2
-        variants={fadeInUp}
-        className={`mt-5 text-3xl md:text-4xl font-bold tracking-tight leading-tight ${
+      <h2
+        className={`mt-5 text-3xl md:text-4xl font-bold tracking-normal leading-tight ${
           dark ? 'text-white' : 'text-slate-900'
         }`}
       >
         {title}
-      </motion.h2>
+      </h2>
 
       {subtitle ? (
-        <motion.p
-          variants={fadeInUp}
-          className={`mt-4 text-sm md:text-base leading-relaxed ${
-            dark ? 'text-slate-400' : 'text-slate-600'
+        <p
+          className={`mt-4 text-sm md:text-base leading-relaxed tracking-normal ${
+            dark ? 'text-slate-300' : 'text-slate-600'
           } ${align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-2xl'}`}
         >
           {subtitle}
-        </motion.p>
+        </p>
       ) : null}
     </div>
   );
@@ -137,7 +135,7 @@ export default function CompanyProfile() {
   const tech = ['Next.js 16', 'React 19', 'TypeScript', 'Node.js', 'Flutter', 'PostgreSQL', 'Supabase', 'Tailwind CSS'];
 
   return (
-    <main className="flex min-h-screen flex-col bg-white pt-20 overflow-x-hidden">
+    <main className="flex min-h-screen flex-col bg-[#070b12] overflow-x-hidden">
       <Navbar />
 
       {/* HERO: Deep Obsidian Elegant Dark Header */}
@@ -145,8 +143,8 @@ export default function CompanyProfile() {
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[300px] bg-blue-600/10 blur-[120px] pointer-events-none rounded-full" />
 
-        <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
+        <div className="relative mx-auto max-w-6xl px-6 pt-32 pb-20 md:pt-36 md:pb-28">
+          <div>
             <SectionTitle
               dark
               eyebrow="The Minds Behind FYNUX"
@@ -168,7 +166,7 @@ export default function CompanyProfile() {
               }
             />
 
-            <motion.div variants={fadeInUp} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
@@ -184,14 +182,14 @@ export default function CompanyProfile() {
               >
                 Kenalan dengan Tim <Users className="h-4 w-4" />
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3">
               <Stat dark label="Fokus Utama" value="Konversi & Efisiensi" />
               <Stat dark label="Model Kolaborasi" value="3 Core Engineers Langsung" />
               <Stat dark label="Lingkup Hasil" value="Desain + Kode + Arsitektur" />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 

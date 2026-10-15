@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Code2, Layers, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,26 +22,22 @@ export default function Hero() {
             fill
             priority
             quality={95}
-            className="object-cover object-center opacity-45 md:opacity-55 scale-100 transition-all duration-700"
+            className="object-contain md:object-cover object-center opacity-80 md:opacity-90 scale-100 lg:scale-105 transition-all duration-700 filter brightness-105 contrast-105"
             sizes="100vw"
           />
 
-          {/* Precision Gradient Masks: Top vignette, radial spotlight & bottom blend */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070b12] via-[#070b12]/60 to-[#070b12]/95" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#070b12]/95 via-[#070b12]/40 to-[#070b12]/95" />
-          <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#070b12]/50 to-[#070b12]/90 pointer-events-none" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+          {/* Precision Gradient Masks: Top seamless blend, bottom fade & subtle radial contrast */}
+          <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#070b12] via-[#070b12]/80 to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#070b12] via-[#070b12]/75 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070b12]/75 via-transparent to-[#070b12]/75 pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(7,11,18,0.4)_0%,rgba(7,11,18,0.85)_100%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
         </div>
 
         {/* Foreground Content: High-Impact Centered Hero */}
         <div className="container max-w-5xl mx-auto px-6 relative z-10 text-center flex flex-col items-center">
           {/* Engineering Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mb-6 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0b0f19]/80 border border-white/15 shadow-xl backdrop-blur-md"
-          >
+          <div className="mb-6 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0b0f19]/90 border border-white/20 shadow-2xl backdrop-blur-md">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -50,38 +45,23 @@ export default function Hero() {
             <span className="text-[11px] font-bold text-slate-200 tracking-widest uppercase font-mono">
               Rekayasa Perangkat Lunak & Sistem Skalabel
             </span>
-          </motion.div>
+          </div>
 
           {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-6 max-w-4xl drop-shadow-sm"
-          >
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-normal text-white leading-[1.15] mb-6 max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
             Arsitektur Web Modern, <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">
               Presisi dan Skalabel.
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Sub-headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed drop-shadow-sm font-normal"
-          >
+          <p className="text-base sm:text-lg md:text-xl text-slate-200 mb-10 max-w-2xl leading-relaxed tracking-normal font-normal drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
             FYNUX membangun aplikasi web kustom, sistem informasi korporat, dan platform digital yang cepat, aman, dan siap mendukung pertumbuhan operasional bisnis Anda.
-          </motion.p>
+          </p>
 
           {/* Actions */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-12 justify-center"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-12 justify-center">
             <button
               type="button"
               onClick={() => setIsConsultModalOpen(true)}
@@ -97,15 +77,10 @@ export default function Hero() {
             >
               Lihat Paket Layanan
             </Link>
-          </motion.div>
+          </div>
 
           {/* Live Background Proof Pill */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#090d16]/90 border border-white/15 backdrop-blur-md text-xs text-slate-300 shadow-lg"
-          >
+          <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#090d16]/90 border border-white/15 backdrop-blur-md text-xs text-slate-300 shadow-lg">
             <span className="text-slate-400">Background Showcase:</span>
             <a
               href="https://www.moonshotacademy.trade"
@@ -120,15 +95,10 @@ export default function Hero() {
             <span className="text-emerald-400 font-mono text-[11px] hidden sm:inline">
               Live Production Build
             </span>
-          </motion.div>
+          </div>
 
           {/* Operational Commitments */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-5 text-xs text-slate-400 font-medium pt-4 border-t border-white/10 w-full max-w-xl"
-          >
+          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-slate-300 font-medium pt-4 border-t border-white/10 w-full max-w-xl">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Transparansi Biaya Penuh</span>
@@ -143,7 +113,7 @@ export default function Hero() {
               <Layers className="w-4 h-4 text-sky-400 shrink-0" />
               <span>Sistem Nyata Siap Produksi</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

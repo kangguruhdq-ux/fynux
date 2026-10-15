@@ -23,14 +23,16 @@
 
 /* Base Body Configuration */
 html {
+  background-color: #070b12;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-gutter: stable;
 }
 
 body {
-  background: var(--background);
+  background: #070b12;
   color: var(--foreground);
   overflow-x: hidden;
   selection-background-color: #2563eb;

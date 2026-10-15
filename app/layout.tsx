@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   description: "Professional Web Solutions for Business",
 };
 
+export const viewport = {
+  themeColor: "#070b12",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,7 +32,7 @@ export default function RootLayout({
     // PERBAIKAN: Tambahkan data-scroll-behavior="smooth" untuk hilangkan warning
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#070b12] text-slate-900 font-sans selection:bg-blue-600 selection:text-white`}
       >
         {children}
       </body>

@@ -10,19 +10,20 @@ export default function WebDesignPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <main className="bg-white min-h-screen">
+    <main className="bg-[#070b12] min-h-screen">
       <Navbar />
 
-      <section className="pt-36 pb-20 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <span className="text-blue-600 font-bold tracking-widest uppercase text-xs sm:text-sm">
+      <section className="relative pt-36 pb-20 px-6 bg-[#070b12] text-white border-b border-white/10 overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="relative max-w-7xl mx-auto text-center">
+          <span className="text-blue-400 font-bold tracking-widest uppercase text-xs sm:text-sm font-mono">
             UI/UX Design Strategy
           </span>
-          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-slate-900 leading-tight">
+          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight">
             Desain yang Tidak Hanya Menarik,<br />
-            Tetapi Terbukti <span className="text-blue-600">Menghasilkan.</span>
+            Tetapi Terbukti <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">Menghasilkan.</span>
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
             Kami menggabungkan hierarki visual yang jelas dengan psikologi pengguna. 
             Hasilnya adalah pengalaman digital yang meyakinkan pengunjung untuk mengambil tindakan.
           </p>
@@ -63,12 +64,12 @@ export default function WebDesignPage() {
         </div>
       </section>
 
-      <section className="py-20 px-6 text-center">
+      <section className="py-20 px-6 text-center bg-white border-t border-slate-200">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-normal">
             Tingkatkan Standar Visual Brand Anda
           </h2>
-          <p className="text-slate-600 mb-8 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 mb-8 max-w-xl mx-auto text-sm sm:text-base leading-relaxed tracking-normal">
             Mulai dari audit antarmuka hingga pembuatan prototipe interaktif beresolusi tinggi.
           </p>
           <button
