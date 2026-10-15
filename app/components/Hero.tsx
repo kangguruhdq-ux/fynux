@@ -22,7 +22,7 @@ export default function Hero() {
             fill
             priority
             quality={95}
-            className="object-contain md:object-cover object-center opacity-80 md:opacity-90 scale-100 lg:scale-105 transition-all duration-700 filter brightness-105 contrast-105"
+            className="object-contain md:object-cover object-center opacity-80 md:opacity-90 scale-100 lg:scale-105 transition-all duration-700 filter brightness-105 contrast-105 animate-hero-breathe"
             sizes="100vw"
           />
 
@@ -31,7 +31,7 @@ export default function Hero() {
           <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#070b12] via-[#070b12]/75 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#070b12]/75 via-transparent to-[#070b12]/75 pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(7,11,18,0.4)_0%,rgba(7,11,18,0.85)_100%)] pointer-events-none" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+          <div className="absolute inset-0 bg-cyber-grid-active pointer-events-none opacity-60" />
         </div>
 
         {/* Foreground Content: High-Impact Centered Hero */}

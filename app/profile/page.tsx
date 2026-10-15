@@ -142,6 +142,11 @@ export default function CompanyProfile() {
       <section className="relative overflow-hidden border-b border-white/10 bg-[#070b12] text-white">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[300px] bg-blue-600/10 blur-[120px] pointer-events-none rounded-full" />
+        
+        {/* Unique Blueprint Radar Animation */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] border border-blue-500/10 rounded-full pointer-events-none opacity-40">
+          <div className="w-full h-full rounded-full border border-dashed border-cyan-400/20 animate-radar-sweep" />
+        </div>
 
         <div className="relative mx-auto max-w-6xl px-6 pt-32 pb-20 md:pt-36 md:pb-28">
           <div>
@@ -251,7 +256,7 @@ export default function CompanyProfile() {
       </section>
 
       {/* TEAM SECTION (WITH RICHARD, JUAN & MAHABBAH MAHABBAN ROMADHON) */}
-      <section id="team" className="bg-slate-50 border-b border-slate-200 py-20 md:py-24">
+      <section id="team" className="bg-white border-b border-slate-200 py-20 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <SectionTitle

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu,
   X,
@@ -184,14 +185,17 @@ export default function Navbar() {
       </header>
 
       {/* ========================================================
-          GLITCH-FREE MOBILE DRAWER (Positioned flush below header)
-          No duplicate headers, no backdrop-filter opacity flicker,
-          and zero layout jumps.
+          BUTTERY SMOOTH MOBILE DRAWER (60fps Spring Curve)
           ======================================================== */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed top-16 inset-x-0 bottom-0 z-40 bg-[#070b12] lg:hidden flex flex-col justify-between overflow-y-auto border-t border-white/10"
-        >
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed top-16 inset-x-0 bottom-0 z-40 bg-[#070b12]/98 backdrop-blur-2xl lg:hidden flex flex-col justify-between overflow-y-auto border-t border-white/10"
+          >
             {/* Status bar sub-header */}
             <div className="px-6 py-3 bg-[#0a0f19] border-b border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
               <span className="flex items-center gap-2">
@@ -203,55 +207,65 @@ export default function Navbar() {
               </span>
             </div>
 
-            {/* Menu Items List */}
+            {/* Menu Items List with Staggered Cascades */}
             <div className="px-6 py-5 space-y-2.5 flex-1">
               <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2 px-1">
                 Navigasi Platform
               </p>
 
-              {navItems.map((item) => {
+              {navItems.map((item, idx) => {
                 const isActive =
                   item.href === '/'
                     ? pathname === '/'
                     : pathname.startsWith(item.href);
 
                 return (
-                  <Link
+                  <motion.div
                     key={item.name}
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`group min-h-[58px] p-3 rounded-2xl flex items-center justify-between border transition-all ${
-                      isActive
-                        ? 'bg-blue-600/15 border-blue-500/40 text-white shadow-sm'
-                        : 'bg-[#0c121d] border-white/5 text-slate-300 hover:border-white/15 hover:bg-white/[0.04]'
-                    }`}
+                    initial={{ opacity: 0, x: -14 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: idx * 0.035,
+                      duration: 0.22,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
                   >
-                    <div className="flex items-center gap-3.5">
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                          isActive
-                            ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                            : 'bg-white/5 text-slate-400 group-hover:text-blue-400 group-hover:bg-blue-500/10'
-                        }`}
-                      >
-                        <item.icon className="w-5 h-5" />
-                      </div>
-                      <div className="flex flex-col text-left">
-                        <span className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors leading-tight">
-                          {item.name}
-                        </span>
-                        <span className="text-[11px] text-slate-400 leading-snug mt-0.5">
-                          {item.subtitle}
-                        </span>
-                      </div>
-                    </div>
-
-                    <ChevronRight
-                      className={`w-4 h-4 transition-transform group-hover:translate-x-0.5 ${
-                        isActive ? 'text-blue-400' : 'text-slate-600'
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`group min-h-[58px] p-3 rounded-2xl flex items-center justify-between border transition-all ${
+                        isActive
+                          ? 'bg-blue-600/15 border-blue-500/40 text-white shadow-sm'
+                          : 'bg-[#0c121d] border-white/5 text-slate-300 hover:border-white/15 hover:bg-white/[0.04]'
                       }`}
-                    />
-                  </Link>
+                    >
+                      <div className="flex items-center gap-3.5">
+                        <div
+                          className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                            isActive
+                              ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
+                              : 'bg-white/5 text-slate-400 group-hover:text-blue-400 group-hover:bg-blue-500/10'
+                          }`}
+                        >
+                          <item.icon className="w-5 h-5" />
+                        </div>
+                        <div className="flex flex-col text-left">
+                          <span className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors leading-tight">
+                            {item.name}
+                          </span>
+                          <span className="text-[11px] text-slate-400 leading-snug mt-0.5">
+                            {item.subtitle}
+                          </span>
+                        </div>
+                      </div>
+
+                      <ChevronRight
+                        className={`w-4 h-4 transition-transform group-hover:translate-x-0.5 ${
+                          isActive ? 'text-blue-400' : 'text-slate-600'
+                        }`}
+                      />
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>
@@ -283,8 +297,9 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
+      </AnimatePresence>
 
       {/* Interactive Consultation Modal */}
       <ConsultationModal

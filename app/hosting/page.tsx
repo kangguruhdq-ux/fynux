@@ -49,22 +49,28 @@ export default function HostingPage() {
       <Navbar />
 
       <section className="relative pt-36 pb-20 px-6 bg-[#070b12] text-white border-b border-white/10 overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        {/* Unique Hosting Server Telemetry & LED Beacon */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[280px] bg-emerald-600/10 blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-80" />
+        <div className="pointer-events-none absolute inset-0 bg-cyber-grid-active opacity-30" />
+
         <div className="relative max-w-7xl mx-auto text-center">
-          <span className="text-blue-400 font-bold tracking-widest uppercase text-xs sm:text-sm font-mono">
-            Managed Cloud Infrastructure
-          </span>
-          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0b0f19]/90 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase mb-5 shadow-lg">
+            <span className="w-2 h-2 rounded-full animate-server-led" />
+            <span>Server Uptime: 99.98% Monitored 24/7</span>
+          </div>
+
+          <h1 className="mt-2 text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight tracking-normal">
             Fokus Pada Pertumbuhan Bisnis.<br />
-            Kami Tangani <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">Infrastruktur Teknis.</span>
+            Kami Tangani <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-emerald-400">Infrastruktur Teknis.</span>
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed tracking-normal font-normal">
             Infrastruktur server NVMe berkinerja tinggi yang dikelola penuh oleh teknisi berpengalaman. Bebas kendala server down dan kebocoran keamanan.
           </p>
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-slate-900 text-white rounded-3xl mx-4 md:mx-10 shadow-xl">
+      <section className="py-20 px-6 bg-[#0b0f19] text-white rounded-3xl mx-4 md:mx-10 shadow-2xl border border-white/10">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>

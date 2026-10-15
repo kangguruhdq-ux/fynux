@@ -303,6 +303,8 @@ export default function ServiceCatalog() {
 
       {/* HERO: Deep Obsidian Elegant Dark Header */}
       <section className="relative overflow-hidden border-b border-white/10 bg-[#070b12] text-white">
+        {/* Unique Service Beam Scan Animation */}
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-85" style={{ animation: 'serviceBeamScan 4s ease-in-out infinite' }} />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] pointer-events-none rounded-full" />
 
@@ -354,10 +356,10 @@ export default function ServiceCatalog() {
       </section>
 
       {/* CATALOG */}
-      <section className="py-14 md:py-16 px-6 bg-slate-50">
+      <section className="py-14 md:py-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           {/* Tabs */}
-          <div className="sticky top-[72px] z-20 -mx-6 px-6 py-4 bg-slate-50/95 backdrop-blur border-b border-slate-200">
+          <div className="sticky top-[72px] z-20 -mx-6 px-6 py-4 bg-white/95 backdrop-blur border-b border-slate-200">
             <div className="flex overflow-x-auto gap-2 pb-1 scrollbar-thin">
               {categories.map((cat) => {
                 const active = activeTab === cat;
@@ -463,7 +465,7 @@ export default function ServiceCatalog() {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
             {/* Left: Quiz Card */}
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-7 md:p-10 shadow-sm relative overflow-hidden">
+            <div className="rounded-3xl border border-slate-200 bg-white p-7 md:p-10 shadow-md relative overflow-hidden">
               {quizStep > 0 && quizStep < 4 && (
                 <div className="absolute top-0 left-0 w-full h-1.5 bg-slate-200">
                   <motion.div

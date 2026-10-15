@@ -17,26 +17,26 @@ export default function SocialProof() {
   ];
 
   return (
-    <section className="py-10 border-y border-slate-200/80 bg-slate-50/70 overflow-hidden" aria-label="Teknologi dan Standar Rekayasa">
+    <section className="py-10 border-b border-white/10 bg-[#070b12] text-white overflow-hidden" aria-label="Teknologi dan Standar Rekayasa">
       <div className="container max-w-7xl mx-auto px-6">
-        <p className="text-center text-xs font-bold text-slate-500 mb-6 uppercase tracking-widest">
+        <p className="text-center text-xs font-mono font-bold text-slate-400 mb-6 uppercase tracking-widest">
           Ekosistem Teknologi & Standar Rekayasa Sistem FYNUX
         </p>
 
         <div className="flex overflow-hidden relative w-full">
           {/* Edge gradients */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#070b12] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#070b12] to-transparent z-10 pointer-events-none" />
 
           <motion.div
             animate={shouldReduceMotion ? {} : { x: ["0%", "-50%"] }}
             transition={{ ease: "linear", duration: 40, repeat: Infinity }}
-            className="flex flex-nowrap gap-8 md:gap-14 items-center whitespace-nowrap"
+            className="flex flex-nowrap gap-6 md:gap-10 items-center whitespace-nowrap"
           >
             {[...technologies, ...technologies].map((tech, index) => (
               <span
                 key={index}
-                className="text-sm md:text-base font-bold text-slate-600 hover:text-blue-600 transition-colors duration-200 cursor-default px-3 py-1 rounded-lg bg-white/70 border border-slate-200/60 shadow-2xs"
+                className="text-xs md:text-sm font-mono font-semibold text-slate-300 hover:text-white transition-colors duration-200 cursor-default px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-blue-500/40 hover:bg-white/10 shadow-sm"
               >
                 {tech}
               </span>

@@ -14,23 +14,26 @@ export default function WebDesignPage() {
       <Navbar />
 
       <section className="relative pt-36 pb-20 px-6 bg-[#070b12] text-white border-b border-white/10 overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        {/* Unique Creative Prism Canvas Ambient Flow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[280px] bg-indigo-600/15 blur-[110px] pointer-events-none rounded-full" />
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-blue-500 via-indigo-400 to-sky-400 opacity-80" />
+        <div className="pointer-events-none absolute inset-0 bg-cyber-grid-dark opacity-40" />
         <div className="relative max-w-7xl mx-auto text-center">
           <span className="text-blue-400 font-bold tracking-widest uppercase text-xs sm:text-sm font-mono">
             UI/UX Design Strategy
           </span>
-          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight">
+          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight tracking-normal">
             Desain yang Tidak Hanya Menarik,<br />
             Tetapi Terbukti <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">Menghasilkan.</span>
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed tracking-normal font-normal">
             Kami menggabungkan hierarki visual yang jelas dengan psikologi pengguna. 
             Hasilnya adalah pengalaman digital yang meyakinkan pengunjung untuk mengambil tindakan.
           </p>
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-slate-50 border-y border-slate-200">
+      <section className="py-20 px-6 bg-white border-b border-slate-200">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
           <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
             <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-6 border border-blue-100">

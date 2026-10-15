@@ -39,7 +39,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24 px-6 bg-slate-50/50 border-b border-slate-200/60" id="faq">
+    <section className="py-24 px-6 bg-white border-b border-slate-100" id="faq">
       <div className="max-w-3xl mx-auto">
         
         {/* Section Header */}

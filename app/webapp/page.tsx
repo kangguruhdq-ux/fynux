@@ -24,23 +24,26 @@ export default function WebAppPage() {
 
       {/* Hero Service */}
       <section className="relative pt-36 pb-20 px-6 bg-[#070b12] text-white border-b border-white/10 overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        {/* Unique WebApp Cloud Architecture Network Flow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[260px] bg-blue-600/10 blur-[100px] pointer-events-none rounded-full" />
+        <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80" style={{ animation: 'dataPacketTransit 3.5s linear infinite' }} />
+        <div className="pointer-events-none absolute inset-0 bg-cyber-grid-active opacity-35" />
         <div className="relative max-w-7xl mx-auto text-center">
           <span className="text-blue-400 font-bold tracking-widest uppercase text-xs sm:text-sm font-mono">
             Web Application Engineering
           </span>
-          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight">
+          <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight tracking-normal">
             Lebih Dari Sekadar Website.<br />
             Ini Adalah <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">Sistem Operasional.</span>
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed tracking-normal font-normal">
             Kami membangun sistem berbasis web (SaaS, CRM internal, modul ERP, presensi) yang mengotomatisasi proses bisnis Anda dengan keandalan tinggi.
           </p>
         </div>
       </section>
 
       {/* Content Detail */}
-      <section className="py-20 px-6 bg-slate-50 border-y border-slate-200">
+      <section className="py-20 px-6 bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold text-slate-900 mb-6">

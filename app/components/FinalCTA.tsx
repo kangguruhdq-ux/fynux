@@ -11,7 +11,9 @@ export default function FinalCTA() {
 
   return (
     <>
-      <section id="contact" className="relative py-24 px-6 overflow-hidden bg-slate-900 border-t border-slate-800">
+      <section id="contact" className="relative py-24 px-6 overflow-hidden bg-[#070b12] text-white border-t border-white/10">
+        <div className="absolute inset-0 bg-cyber-grid-dark opacity-40 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[130px] pointer-events-none rounded-full" />
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

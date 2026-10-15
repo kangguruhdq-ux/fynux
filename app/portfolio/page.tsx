@@ -94,16 +94,19 @@ export default function Portfolio() {
       <Navbar />
 
       {/* 1) HERO */}
-      <section className="relative pt-32 pb-20 px-6 bg-[#070b12] text-white border-b border-white/10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+      <section className="relative pt-32 pb-20 px-6 bg-[#070b12] text-white border-b border-white/10 overflow-hidden">
+        <div className="absolute inset-0 bg-cyber-grid-active pointer-events-none opacity-30" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[250px] bg-blue-600/10 blur-[120px] pointer-events-none rounded-full" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-blue-400 mb-6">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-blue-400 mb-6 hover-uplift">
             Portofolio & Studi Kasus
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-normal leading-tight">
             Karya Rekayasa Nyata, <br />
-            <span className="text-blue-400">Dampak Nyata bagi Klien.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">
+              Dampak Nyata bagi Klien.
+            </span>
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed tracking-normal">
@@ -132,7 +135,7 @@ export default function Portfolio() {
               >
                 {/* Visual */}
                 <div className="w-full lg:w-1/2">
-                  <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden bg-slate-50 border border-slate-200 shadow-xl group">
+                  <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-2xl group hover-uplift">
                     <Image
                       src={study.image}
                       alt={study.project}

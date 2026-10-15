@@ -60,7 +60,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-24 px-6 bg-slate-50/60 relative overflow-hidden border-b border-slate-200/60">
+    <section id="services" className="py-24 px-6 bg-white relative overflow-hidden border-b border-slate-100">
       <div className="relative max-w-7xl mx-auto z-10">
         
         {/* Header */}
@@ -112,7 +112,7 @@ export default function Services() {
                 variants={fadeInUp}
                 transition={{ delay: service.delay }}
                 viewport={{ once: true }}
-                className="relative h-full p-8 md:p-9 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                className="relative h-full p-8 md:p-9 rounded-3xl border border-slate-100 bg-white shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Icon */}
