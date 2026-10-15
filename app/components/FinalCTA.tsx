@@ -1,57 +1,68 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
+import ConsultationModal from './ConsultationModal';
 
 export default function FinalCTA() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <section className="relative py-24 px-6 overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900"></div>
-      
-      {/* Decorative Circles */}
-      <div className="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 bg-blue-500 rounded-full blur-[120px] opacity-40 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 bg-indigo-500 rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
+    <>
+      <section id="contact" className="relative py-24 px-6 overflow-hidden bg-slate-900 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="text-xs font-bold tracking-widest uppercase text-blue-400 mb-3 inline-block">
+              Langkah Berikutnya
+            </span>
 
-      <div className="max-w-4xl mx-auto relative z-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Siap Bangun Sistem Digital <br className="hidden md:block" />
-            yang Menguntungkan?
-          </h2>
-          
-          <p className="text-lg md:text-xl text-blue-100 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Bergabunglah dengan puluhan bisnis dan institusi yang telah mempercayakan arsitektur digital mereka pada FYNUX. Mari diskusi hari ini.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a 
-              href="https://wa.me/YOUR_PHONE_NUMBER" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group px-8 py-4 bg-white text-blue-900 font-bold rounded-xl hover:bg-slate-50 transition-all shadow-xl hover:shadow-white/20 flex items-center justify-center gap-2 w-full sm:w-auto"
-            >
-              Mulai Project Saya <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-            
-            <Link 
-              href="/portfolio"
-              className="px-8 py-4 bg-transparent text-white border-2 border-white/20 font-bold rounded-xl hover:bg-white/10 transition-all flex items-center justify-center w-full sm:w-auto"
-            >
-              Lihat Studi Kasus
-            </Link>
-          </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+              Siap Membangun Solusi Digital <br className="hidden md:block" />
+              yang Bekerja untuk Bisnis Anda?
+            </h2>
 
-          <p className="mt-8 text-sm text-blue-300 font-medium">
-            *Slot terbatas. Kami membatasi jumlah proyek bulanan <br className="hidden sm:block" /> untuk memastikan kualitas Enterprise-grade tetap terjaga.
-          </p>
-        </motion.div>
-      </div>
-    </section>
+            <p className="text-base md:text-lg text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Diskusikan kebutuhan arsitektur sistem, aplikasi web, atau profil perusahaan Anda bersama tim teknis FYNUX hari ini.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="group min-h-[48px] px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+              >
+                <MessageSquare className="w-5 h-5 text-blue-200" />
+                <span>Mulai Konsultasi Kebutuhan</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <Link
+                href="/portfolio"
+                className="min-h-[48px] px-8 py-4 bg-slate-800 text-slate-200 border border-slate-700 font-bold rounded-xl hover:bg-slate-700 hover:text-white transition-all flex items-center justify-center w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              >
+                Lihat Studi Kasus Klien
+              </Link>
+            </div>
+
+            <p className="mt-8 text-xs text-slate-400 font-medium">
+              Alokasi proyek bulanan dibatasi secara terukur untuk menjamin ketepatan delivery dan standar kode terbaik.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <ConsultationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        preselectedService="Web Application Development"
+      />
+    </>
   );
 }

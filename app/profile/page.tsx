@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import {
   Zap,
@@ -10,21 +11,23 @@ import {
   Code2,
   Target,
   ArrowRight,
-  Sparkles,
   CheckCircle2,
+  XCircle,
   Users,
+  MessageSquare,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ConsultationModal from '../components/ConsultationModal';
 
 import richardPic from '../team/richard.webp';
 import juanPic from '../team/juan.webp';
 
 // -------------------- MOTION --------------------
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 16 },
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 90, damping: 18 } },
 };
 
@@ -36,7 +39,7 @@ const stagger: Variants = {
 // -------------------- UI HELPERS --------------------
 function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-bold tracking-widest text-slate-700 uppercase shadow-sm">
+    <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-4 py-1.5 text-[11px] font-bold tracking-widest text-slate-700 uppercase shadow-sm">
       <span className="relative flex h-2 w-2">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-60" />
         <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
@@ -65,7 +68,7 @@ function SectionTitle({
 
       <motion.h2
         variants={fadeInUp}
-        className={`mt-5 text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight`}
+        className="mt-5 text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight"
       >
         {title}
       </motion.h2>
@@ -86,7 +89,7 @@ function SectionTitle({
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
+    <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
       {children}
     </span>
   );
@@ -95,7 +98,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 function CheckLine({ text }: { text: string }) {
   return (
     <li className="flex items-start gap-2 text-sm text-slate-700">
-      <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 shrink-0" />
+      <CheckCircle2 className="h-4 w-4 text-emerald-600 mt-0.5 shrink-0" />
       <span className="leading-snug">{text}</span>
     </li>
   );
@@ -103,18 +106,17 @@ function CheckLine({ text }: { text: string }) {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <p className="text-xs font-bold tracking-widest uppercase text-slate-500">{label}</p>
-      <p className="mt-1 text-lg font-bold text-slate-900">{value}</p>
+      <p className="mt-1 text-base sm:text-lg font-bold text-slate-900">{value}</p>
     </div>
   );
 }
 
-// -------------------- PAGE --------------------
 export default function CompanyProfile() {
-  const WHATSAPP_URL = 'https://wa.me/6281234567890';
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const tech = ['Next.js', 'Node.js', 'Flutter', 'PostgreSQL', 'Supabase', 'Tailwind'];
+  const tech = ['Next.js', 'Node.js', 'Flutter', 'PostgreSQL', 'Supabase', 'Tailwind CSS'];
 
   return (
     <main className="flex min-h-screen flex-col bg-white pt-20 overflow-x-hidden">
@@ -122,54 +124,51 @@ export default function CompanyProfile() {
 
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-white">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-40 right-[-120px] h-[520px] w-[520px] rounded-full bg-blue-500/10 blur-3xl" />
-          <div className="absolute bottom-[-220px] left-[-160px] h-[520px] w-[520px] rounded-full bg-indigo-500/10 blur-3xl" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:5rem_5rem] opacity-[0.12] [mask-image:radial-gradient(ellipse_55%_50%_at_50%_0%,#000_75%,transparent_100%)]" />
-        </div>
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-35" />
 
         <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <SectionTitle
-              eyebrow="The minds behind FYNUX"
+              eyebrow="The Minds Behind FYNUX"
               title={
                 <>
-                  Tim kecil yang bergerak cepat —
+                  Tim Spesialis yang Bergerak Cepat,
                   <br className="hidden md:block" />
-                  <span className="text-blue-600">hasilnya terasa “kelas korporat”.</span>
+                  <span className="text-blue-600"> Standar Rekayasa Terpercaya.</span>
                 </>
               }
               subtitle={
                 <>
-                  Kami bukan agensi massal. Kami partner teknis yang fokus ke 2 hal:
-                  <span className="font-semibold text-slate-900"> konversi</span> dan{' '}
-                  <span className="font-semibold text-slate-900">efisiensi</span>.
-                  Karena website/sistem yang bagus itu harus bikin bisnis kamu lebih cepat untung, bukan tambah ribet.
+                  Kami bukan agensi massal. Kami partner teknis independen yang berfokus pada dua hal utama:
+                  <span className="font-semibold text-slate-900"> efisiensi sistem</span> dan{' '}
+                  <span className="font-semibold text-slate-900">peningkatan konversi</span>.
+                  Sistem yang baik harus mempermudah operasional dan menumbuhkan bisnis Anda.
                 </>
               }
             />
 
             <motion.div variants={fadeInUp} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-7 py-3.5 text-sm font-bold text-white shadow-sm hover:bg-slate-800"
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] rounded-2xl bg-slate-900 px-7 py-3.5 text-sm font-bold text-white shadow-sm hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                Konsultasi 15 Menit <ArrowRight className="h-4 w-4" />
-              </a>
+                <MessageSquare className="h-4 w-4" />
+                Konsultasikan Proyek 15 Menit
+                <ArrowRight className="h-4 w-4" />
+              </button>
               <Link
                 href="#team"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-sm font-bold text-slate-800 hover:bg-slate-50"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-sm font-bold text-slate-800 hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Kenalan dengan Tim <Users className="h-4 w-4" />
               </Link>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3">
-              <Stat label="Fokus" value="Conversion & Efficiency" />
-              <Stat label="Style kerja" value="Small team • fast iteration" />
-              <Stat label="Output" value="Design + Dev + Strategy" />
+              <Stat label="Fokus Utama" value="Konversi & Efisiensi" />
+              <Stat label="Model Kolaborasi" value="Tim Inti Langsung" />
+              <Stat label="Lingkup Hasil" value="Desain + Kode + Arsitektur" />
             </motion.div>
           </motion.div>
         </div>
@@ -180,52 +179,50 @@ export default function CompanyProfile() {
         <div className="mx-auto max-w-6xl px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <SectionTitle
-              eyebrow="Why we exist"
-              title="Kenapa FYNUX hadir?"
-              subtitle="Karena banyak bisnis serius terhambat bukan karena ide — tapi karena sistemnya lambat, mahal, dan tidak rapi."
+              eyebrow="Tujuan Kami"
+              title="Kenapa FYNUX Hadir?"
+              subtitle="Banyak bisnis terhambat berkembang bukan karena kekurangan ide, melainkan karena infrastruktur teknologinya lambat dan tidak terintegrasi."
             />
 
             <motion.div variants={fadeInUp} className="mt-12 grid gap-6 md:grid-cols-2">
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 p-10 text-white">
-                <div className="absolute -top-14 -right-14 h-52 w-52 rounded-full bg-white/10 blur-2xl" />
-                <p className="text-xs font-bold tracking-widest uppercase text-blue-300">The Problem</p>
-                <p className="mt-4 text-2xl md:text-3xl font-semibold leading-snug text-slate-200">
-                  “Teknologi dan otomasi yang rapi seringnya cuma bisa dinikmati perusahaan bermodal besar.”
+              <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-8 sm:p-10 text-white shadow-lg">
+                <p className="text-xs font-bold tracking-widest uppercase text-blue-400">Tantangan Lapangan</p>
+                <p className="mt-4 text-xl sm:text-2xl font-semibold leading-snug text-slate-200">
+                  Otomasi dan sistem terintegrasi sering kali hanya dinikmati perusahaan bermodal besar.
                 </p>
-                <ul className="mt-6 space-y-2 text-sm text-slate-300">
-                  <li className="flex items-start gap-2">
-                    <Sparkles className="h-4 w-4 mt-0.5 text-slate-300" />
-                    Operasional jadi manual & lambat
+                <ul className="mt-6 space-y-3 text-sm text-slate-300">
+                  <li className="flex items-start gap-2.5">
+                    <XCircle className="h-4 w-4 mt-0.5 text-red-400 shrink-0" />
+                    <span>Operasional manual yang rentan kesalahan manusia</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <Sparkles className="h-4 w-4 mt-0.5 text-slate-300" />
-                    Website ada, tapi nggak menghasilkan
+                  <li className="flex items-start gap-2.5">
+                    <XCircle className="h-4 w-4 mt-0.5 text-red-400 shrink-0" />
+                    <span>Website pasif yang tidak mendatangkan prospek bisnis nyata</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <Sparkles className="h-4 w-4 mt-0.5 text-slate-300" />
-                    Vendor terlalu banyak, koordinasi ribet
+                  <li className="flex items-start gap-2.5">
+                    <XCircle className="h-4 w-4 mt-0.5 text-red-400 shrink-0" />
+                    <span>Banyak vendor terpisah yang menyulitkan koordinasi dan audit</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="relative overflow-hidden rounded-3xl border border-blue-200 bg-blue-600 p-10 text-white">
-                <div className="absolute -bottom-14 -left-14 h-52 w-52 rounded-full bg-black/15 blur-2xl" />
-                <p className="text-xs font-bold tracking-widest uppercase text-blue-100">Our Mission</p>
-                <p className="mt-4 text-2xl md:text-3xl font-bold leading-snug">
-                  “Kami bikin teknologi yang terasa enterprise — bisa diakses UMKM & institusi yang serius bertumbuh.”
+              <div className="relative overflow-hidden rounded-3xl border border-blue-600 bg-blue-600 p-8 sm:p-10 text-white shadow-lg">
+                <p className="text-xs font-bold tracking-widest uppercase text-blue-100">Misi Kami</p>
+                <p className="mt-4 text-xl sm:text-2xl font-bold leading-snug">
+                  Membawa keandalan teknologi tingkat industri agar dapat diakses oleh UMKM dan institusi berkembang.
                 </p>
-                <ul className="mt-6 space-y-2 text-sm text-blue-100">
-                  <li className="flex items-start gap-2">
-                    <ShieldCheck className="h-4 w-4 mt-0.5" />
-                    Arsitektur rapi, aman, scalable
+                <ul className="mt-6 space-y-3 text-sm text-blue-50">
+                  <li className="flex items-start gap-2.5">
+                    <ShieldCheck className="h-4 w-4 mt-0.5 shrink-0" />
+                    <span>Arsitektur kode terstruktur, terdokumentasi, dan aman</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <Zap className="h-4 w-4 mt-0.5" />
-                    Delivery cepat, iterasi cepat
+                  <li className="flex items-start gap-2.5">
+                    <Zap className="h-4 w-4 mt-0.5 shrink-0" />
+                    <span>Iterasi pengembangan cepat dengan target peluncuran terukur</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <Target className="h-4 w-4 mt-0.5" />
-                    Fokus outcome: trust, lead, efisiensi
+                  <li className="flex items-start gap-2.5">
+                    <Target className="h-4 w-4 mt-0.5 shrink-0" />
+                    <span>Fokus pada capaian nyata: kepercayaan, konversi leads, dan efisiensi waktu</span>
                   </li>
                 </ul>
               </div>
@@ -234,14 +231,14 @@ export default function CompanyProfile() {
         </div>
       </section>
 
-      {/* TEAM (Babah removed) */}
+      {/* TEAM */}
       <section id="team" className="bg-slate-50 border-y border-slate-200 py-20 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <SectionTitle
-              eyebrow="The team"
-              title="Tim spesialis. Ditangani langsung."
-              subtitle="Bukan sistem lempar-lempar. Kamu komunikasi dengan orang yang benar-benar ngerjain."
+              eyebrow="Tim Inti"
+              title="Dikerjakan Langsung oleh Spesialis"
+              subtitle="Bukan alih daya tanpa pengawasan. Anda berkomunikasi langsung dengan para perekayasa sistem."
             />
 
             <div className="mt-14 grid gap-6">
@@ -267,17 +264,15 @@ export default function CompanyProfile() {
                     <h3 className="mt-4 text-2xl md:text-3xl font-bold text-slate-900">Richard Faiz</h3>
                     <p className="mt-1 text-sm font-semibold text-blue-700">Visionary & Workflow Specialist</p>
 
-                    <p className="mt-4 text-slate-600 leading-relaxed">
-                      Richard memastikan desain dan sistem punya satu tujuan: bikin proses bisnis lebih efisien dan
-                      bikin website lebih “jualan”. Fokusnya: struktur UI/UX yang jelas, alur pengguna yang minim friksi,
-                      dan logic yang bener-bener kepakai di lapangan.
+                    <p className="mt-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+                      Richard mengorkestrasi keselarasan desain antarmuka dengan alur kerja bisnis. Fokusnya terletak pada struktur antarmuka yang intuitif, minim friksi navigasi, dan logika aplikasi yang benar-benar memecahkan masalah di lapangan.
                     </p>
 
-                    <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-                      <CheckLine text="UI/UX strategy yang fokus konversi" />
-                      <CheckLine text="Frontend architecture yang rapi" />
-                      <CheckLine text="Business logic & flow operasional" />
-                      <CheckLine text="Analisis kompetitor & positioning" />
+                    <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
+                      <CheckLine text="Strategi UI/UX berorientasi konversi" />
+                      <CheckLine text="Arsitektur frontend modular dan bersih" />
+                      <CheckLine text="Pemetaan alur operasional dan logika bisnis" />
+                      <CheckLine text="Analisis struktur informasi dan penempatan aksi" />
                     </ul>
                   </div>
                 </div>
@@ -298,23 +293,22 @@ export default function CompanyProfile() {
 
                   <div className="flex-1 md:text-right">
                     <div className="flex flex-wrap items-center gap-2 md:justify-end">
-                      <Pill>Lead Backend</Pill>
-                      <Pill>Security & Scalability</Pill>
+                      <Pill>Lead Backend Engineer</Pill>
+                      <Pill>Keamanan & Skalabilitas</Pill>
                     </div>
 
                     <h3 className="mt-4 text-2xl md:text-3xl font-bold text-slate-900">Juan</h3>
-                    <p className="mt-1 text-sm font-semibold text-indigo-700">System Core & Security Expert</p>
+                    <p className="mt-1 text-sm font-semibold text-indigo-700">Core Systems & Security</p>
 
-                    <p className="mt-4 text-slate-600 leading-relaxed">
-                      Juan membangun fondasi sistem: database, keamanan, performa server, dan arsitektur yang siap scale.
-                      Targetnya simple: sistem kamu harus stabil, cepat, dan sulit dimanipulasi.
+                    <p className="mt-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+                      Juan membangun fondasi teknis: perancangan skema basis data, pengerasan keamanan server, optimasi kueri, dan ketahanan sistem. Tujuannya adalah memastikan sistem berjalan stabil, responsif, dan terlindungi dari eksploitasi.
                     </p>
 
-                    <ul className="mt-5 grid gap-2 sm:grid-cols-2 md:justify-items-end">
-                      <CheckLine text="Database design & data integrity" />
-                      <CheckLine text="Cyber security mindset" />
-                      <CheckLine text="Performance & server optimization" />
-                      <CheckLine text="Arsitektur scalable untuk growth" />
+                    <ul className="mt-5 grid gap-2.5 sm:grid-cols-2 md:justify-items-end text-left">
+                      <CheckLine text="Perancangan basis data & integritas relasi" />
+                      <CheckLine text="Penerapan pengerasan keamanan server" />
+                      <CheckLine text="Optimasi kinerja dan pemantauan latensi" />
+                      <CheckLine text="Arsitektur skalabel untuk lonjakan beban" />
                     </ul>
                   </div>
                 </div>
@@ -329,24 +323,24 @@ export default function CompanyProfile() {
         <div className="mx-auto max-w-6xl px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <SectionTitle
-              eyebrow="Engineering"
-              title="Filosofi kerja yang bikin output konsisten."
-              subtitle="Bukan sekadar cepat jadi, tapi rapi, aman, dan gampang dikembangkan."
+              eyebrow="Prinsip Rekayasa"
+              title="Filosofi Kerja yang Menghasilkan Kualitas Konsisten"
+              subtitle="Bukan sekadar selesai tepat waktu, namun rapi, teruji, dan mudah dipelihara jangka panjang."
             />
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {[
-                { icon: Target, title: 'Make it Work', desc: 'Solusi harus menyelesaikan masalah nyata dan bisa dipakai hari ini.' },
-                { icon: ShieldCheck, title: 'Make it Right', desc: 'Arsitektur bersih, aman, dan scalable — bukan “asal jadi”.' },
-                { icon: Zap, title: 'Make it Fast', desc: 'Loading lambat bunuh konversi. Kita optimize dari awal.' },
+                { icon: Target, title: 'Menyelesaikan Masalah', desc: 'Setiap fitur yang dibangun harus menyelesaikan tantangan operasional yang nyata.' },
+                { icon: ShieldCheck, title: 'Tepat & Teruji', desc: 'Struktur kode bersih, validasi menyeluruh, dan mengedepankan keamanan.' },
+                { icon: Zap, title: 'Efisien & Cepat', desc: 'Performa waktu muat teroptimasi dari awal demi kenyamanan pengguna dan konversi.' },
               ].map((x) => (
                 <motion.div
                   key={x.title}
                   variants={fadeInUp}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 p-7 hover:shadow-md transition-shadow"
+                  className="rounded-3xl border border-slate-200 bg-slate-50 p-7 hover:border-slate-300 transition-colors"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-200">
-                    <x.icon className="h-5 w-5 text-slate-900" />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white border border-slate-200 text-slate-900">
+                    <x.icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-bold text-slate-900">{x.title}</h3>
                   <p className="mt-2 text-sm text-slate-600 leading-relaxed">{x.desc}</p>
@@ -354,14 +348,11 @@ export default function CompanyProfile() {
               ))}
             </div>
 
-            <motion.div variants={fadeInUp} className="mt-14 overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 p-10 md:p-14 text-white relative">
-              <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
-              <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" />
-
+            <motion.div variants={fadeInUp} className="mt-14 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-8 md:p-12 text-white relative">
               <div className="relative">
-                <h3 className="text-2xl md:text-3xl font-bold">Tech Stack Ecosystem</h3>
-                <p className="mt-3 max-w-2xl text-sm text-slate-300">
-                  Kami pilih teknologi yang digunakan produk modern: stabil, cepat, dan banyak dukungan komunitas.
+                <h3 className="text-2xl md:text-3xl font-bold">Ekosistem Teknologi Terpilih</h3>
+                <p className="mt-3 max-w-2xl text-sm text-slate-300 leading-relaxed">
+                  Kami memilih perkakas perangkat lunak modern dengan dokumentasi kuat, ekosistem aktif, dan kestabilan teruji.
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
@@ -375,15 +366,15 @@ export default function CompanyProfile() {
                   ))}
                 </div>
 
-                <div className="mt-7 flex flex-wrap gap-2 text-xs text-slate-300">
+                <div className="mt-8 flex flex-wrap gap-2 text-xs text-slate-300">
                   <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
-                    <ShieldCheck className="h-4 w-4 text-green-300" /> Security-first mindset
+                    <ShieldCheck className="h-4 w-4 text-emerald-400" /> Pendekatan Berorientasi Keamanan
                   </span>
                   <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
-                    <Zap className="h-4 w-4 text-yellow-300" /> Performance-aware from day one
+                    <Zap className="h-4 w-4 text-amber-400" /> Optimasi Performa Sejak Awal
                   </span>
                   <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
-                    <Target className="h-4 w-4 text-blue-300" /> Outcome-driven build
+                    <Target className="h-4 w-4 text-blue-400" /> Berorientasi Pada Capaian Klien
                   </span>
                 </div>
               </div>
@@ -397,27 +388,27 @@ export default function CompanyProfile() {
         <div className="mx-auto max-w-5xl px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <SectionTitle
-              eyebrow="Process"
-              title="Proses yang transparan, tanpa drama."
-              subtitle="Kamu selalu tahu: progressnya apa, siapa ngerjain, dan kapan selesai."
+              eyebrow="Tahapan Kerja"
+              title="Proses Transparan dan Terjadwal"
+              subtitle="Anda selalu mengetahui tahapan progres, teknisi penanggung jawab, dan estimasi waktu penyelesaian."
             />
 
             <div className="mt-12 grid gap-6">
               {[
-                { step: '1', title: 'Discovery & Strategy', time: 'Hari 1–2', icon: Search, desc: 'Kita pahami bisnis & target audiens dulu. Baru tentukan struktur, CTA, dan flow yang paling efektif.', out: 'Brief + wireframe' },
-                { step: '2', title: 'Design & Approval', time: 'Hari 3–5', icon: Palette, desc: 'Desain UI/UX. Development dimulai setelah kamu approve — biar nggak buang waktu revisi bolak-balik.', out: 'UI/UX Design' },
-                { step: '3', title: 'Development & Staging', time: 'Hari 6–12', icon: Code2, desc: 'Implementasi + staging URL untuk kamu cek. Komunikasi jelas: apa yang done, apa yang next.', out: 'Staging site + testing' },
-                { step: '4', title: 'Launch & Handover', time: 'Hari 13–14', icon: Rocket, desc: 'Final QA, responsif mobile, dan deployment. Kalau ada dashboard, kita kasih tutorial singkat biar tim kamu bisa jalan.', out: 'Live website + akses + dokumentasi' },
+                { step: '1', title: 'Analisis & Strategi', time: 'Hari 1-2', icon: Search, desc: 'Memahami proses bisnis, pengguna sasaran, serta memetakan struktur navigasi dan aksi utama.', out: 'Dokumen brief dan sketsa alur sistem' },
+                { step: '2', title: 'Desain & Persetujuan', time: 'Hari 3-5', icon: Palette, desc: 'Pembuatan antarmuka visual terperinci. Pengembangan kode dimulai setelah persetujuan desain untuk efisiensi waktu.', out: 'Prototipe UI/UX interaktif' },
+                { step: '3', title: 'Pengembangan & Uji Staging', time: 'Hari 6-12', icon: Code2, desc: 'Penulisan kode program dan penyiapan tautan staging internal agar Anda dapat menguji fungsi secara langsung.', out: 'Aplikasi berjalan pada server staging' },
+                { step: '4', title: 'Peluncuran & Dokumentasi', time: 'Hari 13-14', icon: Rocket, desc: 'Pengujian kualitas akhir, responsivitas layar ponsel, deployment ke server produksi, dan sesi pengenalan sistem.', out: 'Aplikasi online, akses mandiri, dan panduan' },
               ].map((x) => (
                 <motion.div key={x.step} variants={fadeInUp} className="rounded-3xl border border-slate-200 bg-white p-7 md:p-9 shadow-sm">
                   <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 ring-1 ring-slate-200">
-                        <x.icon className="h-5 w-5 text-slate-900" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 shrink-0">
+                        <x.icon className="h-5 w-5" />
                       </div>
                       <div>
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-xs font-bold tracking-widest uppercase text-slate-500">Step {x.step}</span>
+                          <span className="text-xs font-bold tracking-widest uppercase text-slate-500">Tahap {x.step}</span>
                           <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                             {x.time}
                           </span>
@@ -427,17 +418,17 @@ export default function CompanyProfile() {
                       </div>
                     </div>
 
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 md:max-w-sm">
-                      <p className="text-xs font-bold tracking-widest uppercase text-slate-500">Output</p>
-                      <p className="mt-2 text-sm font-semibold text-slate-800">{x.out}</p>
-                      <ul className="mt-3 space-y-2 text-sm text-slate-700">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 mt-0.5 text-green-600" />
-                          Update progress jelas
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 md:max-w-xs shrink-0">
+                      <p className="text-xs font-bold tracking-widest uppercase text-slate-500">Hasil Nyata</p>
+                      <p className="mt-1 text-sm font-semibold text-slate-800">{x.out}</p>
+                      <ul className="mt-3 space-y-2 text-xs text-slate-700">
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+                          <span>Laporan progres terjadwal</span>
                         </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 mt-0.5 text-green-600" />
-                          Minim revisi “random”
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+                          <span>Alur revisi terstruktur</span>
                         </li>
                       </ul>
                     </div>
@@ -447,10 +438,9 @@ export default function CompanyProfile() {
             </div>
 
             <motion.div variants={fadeInUp} className="mt-10 rounded-3xl border border-slate-200 bg-white p-7 text-center shadow-sm">
-              <p className="text-sm font-bold text-slate-900">Kalau kamu belum yakin, itu normal.</p>
+              <p className="text-sm font-bold text-slate-900">Belum memiliki spesifikasi teknis lengkap?</p>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                Kita bisa mulai dari konsultasi singkat. Kalau scope belum jelas, kita bantu rapikan.
-                Kalau ternyata bukan solusi terbaik buat kamu, kita akan bilang—tanpa maksa.
+                Kami siap membantu memetakan kebutuhan sistem Anda mulai dari konsultasi awal secara objektif dan tanpa komitmen mengikat.
               </p>
             </motion.div>
           </motion.div>
@@ -462,35 +452,35 @@ export default function CompanyProfile() {
         <div className="mx-auto max-w-4xl px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <SectionTitle
-              eyebrow="Next step"
-              title="Partner teknis, bukan vendor sekali jalan."
-              subtitle="Kami akan nanya “why”, challenge asumsi, dan kasih saran arsitektur — karena hasilmu adalah portofolio terbaik kami."
+              eyebrow="Langkah Selanjutnya"
+              title="Mitra Teknis Jangka Panjang untuk Pertumbuhan Bisnis Anda"
+              subtitle="Kami menelaah kebutuhan mendasar, menguji asumsi teknis, dan merekomendasikan arsitektur yang paling efektif."
             />
 
             <motion.div variants={fadeInUp} className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/portfolio"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-8 py-4 text-white font-bold hover:bg-blue-600 transition-colors shadow-lg"
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] rounded-2xl bg-slate-900 px-8 py-4 text-white font-bold hover:bg-blue-600 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                Lihat Bukti Kerja <ArrowRight className="h-5 w-5" />
+                Lihat Bukti Kerja Portofolio <ArrowRight className="h-5 w-5" />
               </Link>
 
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-2xl border-2 border-slate-200 bg-white px-8 py-4 text-slate-800 font-bold hover:border-blue-600 hover:text-blue-600 transition-colors"
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] rounded-2xl border border-slate-200 bg-white px-8 py-4 text-slate-800 font-bold hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                Konsultasi Proyek Sekarang
-              </a>
+                <MessageSquare className="h-5 w-5" />
+                Mulai Konsultasi Proyek
+              </button>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap justify-center gap-3 text-xs font-semibold text-slate-500">
               <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2">
-                <ShieldCheck className="h-4 w-4 text-green-600" /> Security-first
+                <ShieldCheck className="h-4 w-4 text-emerald-600" /> Security-first
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2">
-                <Zap className="h-4 w-4 text-yellow-600" /> Fast delivery
+                <Zap className="h-4 w-4 text-amber-500" /> Reliable Delivery
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2">
                 <Target className="h-4 w-4 text-blue-600" /> Outcome-driven
@@ -501,6 +491,12 @@ export default function CompanyProfile() {
       </section>
 
       <Footer />
+
+      <ConsultationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        preselectedService="Konsultasi Arsitektur Web"
+      />
     </main>
   );
 }

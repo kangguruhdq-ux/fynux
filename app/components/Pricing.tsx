@@ -21,6 +21,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import Link from 'next/link';
+import ConsultationModal from './ConsultationModal';
 
 // --- TYPES ---
 type Plan = {
@@ -199,6 +200,8 @@ function FeatureGroup({
 export default function Pricing() {
   const WHATSAPP_URL = 'https://wa.me/6281234567890'; // ✅ ganti nomor WA kamu di sini
   const [openCompare, setOpenCompare] = useState(false);
+  const [consultModalOpen, setConsultModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('Paket Starter (Rp 1.49jt)');
 
   // --- DATA ---
   const plans: Plan[] = useMemo(
@@ -549,12 +552,16 @@ export default function Pricing() {
 
                   {/* CTA */}
                   <div className="mt-8">
-                    <motion.a
+                    <motion.button
+                      type="button"
                       whileHover={{ scale: 1.02 }}
                       whileTap={buttonTap}
-                      href={plan.ctaHref}
+                      onClick={() => {
+                        setSelectedPlan(`Paket ${plan.name}`);
+                        setConsultModalOpen(true);
+                      }}
                       className={[
-                        'group flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3.5 text-center text-sm font-bold transition-all duration-300',
+                        'group flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3.5 text-center text-sm font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600',
                         isFeatured
                           ? 'bg-blue-600 text-white hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-900/30'
                           : isEnterprise
@@ -564,10 +571,10 @@ export default function Pricing() {
                     >
                       {plan.ctaText}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </motion.a>
+                    </motion.button>
 
-                    <p className={`mt-3 text-center text-[11px] ${isFeatured ? 'text-slate-500' : 'text-slate-400'}`}>
-                      Klik untuk terhubung langsung ke WhatsApp
+                    <p className={`mt-3 text-center text-[11px] ${isFeatured ? 'text-slate-400' : 'text-slate-500'}`}>
+                      Konsultasi langsung dengan arsitek sistem
                     </p>
                   </div>
                 </motion.div>
@@ -747,21 +754,25 @@ export default function Pricing() {
                     </div>
 
                     <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-                      <motion.a
+                      <motion.button
+                        type="button"
                         whileHover={{ scale: 1.05 }}
                         whileTap={buttonTap}
-                        href={WHATSAPP_URL}
-                        className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-bold text-white transition hover:bg-blue-500 shadow-lg shadow-blue-500/20"
+                        onClick={() => {
+                          setSelectedPlan('Paket Business (Custom Design / E-Commerce)');
+                          setConsultModalOpen(true);
+                        }}
+                        className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-bold text-white transition hover:bg-blue-500 shadow-lg shadow-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
                       >
-                        Konsultasi Gratis
-                      </motion.a>
+                        Konsultasi Detail Proyek
+                      </motion.button>
                       <motion.a
                         whileHover={{ scale: 1.05 }}
                         whileTap={buttonTap}
                         href="#pricing"
-                        className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-2.5 text-sm font-bold text-slate-900 transition hover:bg-slate-50"
+                        className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-2.5 text-sm font-bold text-slate-900 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
                       >
-                        Lihat Paket
+                        Kembali ke Pilihan Paket
                       </motion.a>
                     </div>
                   </div>
@@ -779,14 +790,13 @@ export default function Pricing() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto rounded-2xl bg-white border border-slate-200 p-8 text-center shadow-sm mt-16"
         >
-          <h4 className="text-xl font-bold text-slate-900 mb-2">💡 Belum yakin pilih paket yang mana?</h4>
+          <h4 className="text-xl font-bold text-slate-900 mb-2">Belum yakin menentukan paket yang tepat?</h4>
           <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
-            Lihat katalog lengkap semua jenis website yang kami kerjakan — dari landing page event sampai sistem manajemen institusi.
-            Kami bantu temukan solusi yang tepat.
+            Pelajari katalog lengkap jenis website dan sistem yang kami bangun, mulai dari landing page terfokus hingga sistem aplikasi manajemen enterprise.
           </p>
           <Link
             href="/servicefynux"
-            className="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-800 transition-colors"
+            className="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-md py-1 px-2"
           >
             Jelajahi Semua Layanan <ArrowRight className="w-4 h-4" />
           </Link>
@@ -795,19 +805,26 @@ export default function Pricing() {
         {/* Trust Footer */}
         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-sm font-medium text-slate-500 pt-8 border-t border-slate-200 mt-10">
           <span className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-green-500" /> Domain & SSL Gratis
+            <ShieldCheck className="w-5 h-5 text-emerald-600" /> Domain & SSL Gratis
           </span>
           <span className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-green-500" /> Server SSD NVMe Super Cepat
+            <ShieldCheck className="w-5 h-5 text-emerald-600" /> Server SSD NVMe Super Cepat
           </span>
           <span className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-green-500" /> Daily/Hourly Backup
+            <ShieldCheck className="w-5 h-5 text-emerald-600" /> Daily/Hourly Backup
           </span>
           <span className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-green-500" /> 99.9% Uptime Guarantee
+            <ShieldCheck className="w-5 h-5 text-emerald-600" /> 99.9% Uptime SLA
           </span>
         </div>
       </div>
+
+      {/* Consultation Modal */}
+      <ConsultationModal
+        isOpen={consultModalOpen}
+        onClose={() => setConsultModalOpen(false)}
+        preselectedService={selectedPlan}
+      />
     </section>
   );
 }
